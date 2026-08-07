@@ -1,367 +1,345 @@
-# 🪙 Python Pygame Assignment: Catch the Coins
-
-## Total Marks: **100**
-
----
-
-# 🎯 Learning Objectives
-
-By completing this assignment, you will learn how to:
-
-- Create a game window using Pygame
-- Draw game objects
-- Handle keyboard input
-- Generate random objects
-- Detect collisions
-- Work with lists of objects
-- Implement a scoring system
-- Manage player lives
-- Display Game Over screen
-- Read and write files for High Score
-
-> **Instructions:** Complete each step in order. When all the steps are completed, you will have a fully functional **Catch the Coins** game.
+# 🎮 Python Assignment: Catch the Coins Game
+**Course:** Python Programming with Pygame  
+**Total Marks:** 100  
+**Difficulty:** Intermediate  
+**Estimated Time:** 3–5 Hours
 
 ---
 
-# Step 1: Create the Game Window (10 Marks)
+# 📌 Objective
 
-## Definition
-
-A **game window** is where the game is displayed. Pygame uses `display.set_mode()` to create it.
-
-### Task
-
-- Import the required modules.
-- Initialize Pygame.
-- Create a window of **500 × 600** pixels.
-- Set the window title.
-
-### Hint 💡
-
-```python
-pygame.init()
-
-window = pygame.display.set_mode((500, 600))
-pygame.display.set_caption("Catch the Coins")
-```
+Create a **Catch the Coins** game using **Python** and **Pygame**. The player controls a basket (or catcher) that collects falling coins while avoiding bombs. The game should track the player's score, lives, and highest score.
 
 ---
 
-# Step 2: Create the Player (10 Marks)
+# 🎯 Learning Outcomes
 
-## Definition
+By completing this assignment, students will learn:
 
-The player is the object controlled by the user.
-
-### Task
-
-- Create a player using `pygame.Rect`.
-- Place it near the bottom of the screen.
-- Draw the player every frame.
-
-### Hint 💡
-
-```python
-player = pygame.Rect(220, 540, 60, 30)
-```
+- Working with the Pygame library
+- Game loop implementation
+- Keyboard input handling
+- Collision detection
+- Random object generation
+- File handling (High Score System)
+- Functions and modular programming
+- Game state management
 
 ---
 
-# Step 3: Move the Player (10 Marks)
+# 📝 Task Description
 
-## Task
+Develop a game where:
 
-Allow the player to move:
-
-- ⬅ Left Arrow → Move Left
-- ➡ Right Arrow → Move Right
-
-Prevent the player from leaving the game window.
-
-### Hint 💡
-
-Use:
-
-```python
-pygame.key.get_pressed()
-```
+- The player moves left and right.
+- Coins randomly fall from the top.
+- Bombs also randomly fall.
+- Collecting coins increases the score.
+- Hitting bombs decreases lives.
+- The game ends when all lives are lost.
+- The highest score is saved permanently in a text file.
 
 ---
 
-# Step 4: Create Falling Coins (10 Marks)
+# ✅ Requirements
 
-## Definition
+## Task 1 — Create the Game Window (10 Marks)
 
-Coins appear randomly at the top of the screen and move downward.
+Create a game window with:
 
-### Task
+- Width: **500**
+- Height: **600**
+- Window title:
+  ```
+  Catch the Coins
+  ```
 
-- Generate coins randomly.
-- Store them inside a list.
-- Move every coin downward.
-- Remove coins after they leave the screen.
-
-### Hint 💡
-
-```python
-coins = []
-```
-
-Create new coins using:
-
-```python
-pygame.Rect()
-```
+The game should run at **60 FPS**.
 
 ---
 
-# Step 5: Catch Coins & Increase Score (10 Marks)
+## Task 2 — Create the Player (10 Marks)
 
-## Task
+Create a player object using `pygame.Rect`.
 
-When the player catches a coin:
+Requirements:
 
-- Remove the coin.
-- Increase the score.
-- Display the updated score.
-
-### Hint 💡
-
-Use:
-
-```python
-colliderect()
-```
+- Positioned near the bottom of the screen.
+- Can move:
+  - Left Arrow ⬅
+  - Right Arrow ➡
+- Cannot move outside the game window.
 
 ---
 
-# Step 6: Create Falling Bombs (10 Marks)
+## Task 3 — Falling Coins (15 Marks)
 
-## Definition
+Create coins that:
 
-Bombs work like coins, but they decrease the player's lives.
+- Spawn randomly from the top.
+- Fall downward continuously.
+- Disappear after leaving the screen.
+- Increase the player's score when collected.
 
-### Task
+### Bonus
 
-- Generate bombs randomly.
-- Move them downward.
-- Remove bombs after they leave the screen.
-
-### Hint 💡
-
-Create another list.
-
-```python
-bombs = []
-```
+Instead of adding a fixed score, award a **random value between 10 and 20**.
 
 ---
 
-# Step 7: Lives System (10 Marks)
+## Task 4 — Falling Bombs (15 Marks)
 
-## Task
+Create bombs that:
 
-- Start the game with **3 lives**.
-- Every time the player touches a bomb:
-  - Remove the bomb.
-  - Lose one life.
-- Display the remaining lives.
-
-### Example
-
-```
-Lives: 3
-
-↓
-
-Lives: 2
-
-↓
-
-Lives: 1
-```
+- Spawn randomly.
+- Fall slightly faster than coins.
+- Remove one life when touching the player.
+- Disappear after collision.
 
 ---
 
-# Step 8: Game Over Screen (10 Marks)
+## Task 5 — Score System (10 Marks)
 
-## Task
+Display:
 
-When lives become **0**:
+- Current Score
+
+The score should increase whenever a coin is collected.
+
+---
+
+## Task 6 — Lives System (10 Marks)
+
+The player starts with:
+
+```
+Lives = 3
+```
+
+Every bomb collision decreases one life.
+
+When lives become **0**, the game should stop.
+
+---
+
+## Task 7 — High Score System (15 Marks)
+
+Implement a permanent high score system.
+
+Requirements:
+
+- Create a file named:
+
+```
+coinscore.txt
+```
+
+- If the file does not exist:
+  - Create it.
+  - Store `0`.
+
+- At game over:
+  - Compare current score with the saved high score.
+  - Save the new score if it is greater.
+
+Display the High Score during gameplay.
+
+---
+
+## Task 8 — Game Over Screen (10 Marks)
+
+When the game ends:
 
 Display:
 
 - GAME OVER
 - Final Score
 - High Score
-- Press **R** to Restart
-- Press **Q** to Quit
 
-### Hint 💡
+Also display:
 
-Use a Boolean variable.
+```
+Press R to Play Again
 
-Example:
-
-```python
-game_over = False
+Press Q to Quit
 ```
 
 ---
 
-# Step 9: High Score System (10 Marks)
+## Task 9 — Restart Function (5 Marks)
 
-## Definition
-
-A **High Score** is the best score the player has achieved.
-
-Store it inside a text file.
-
-### Task
-
-- Load the High Score when the game starts.
-- Save a new High Score when the player beats the previous one.
-
-### Hint 💡
-
-Use:
-
-```python
-open()
-```
-
-Example:
-
-```python
-with open("score.txt", "r") as file:
-```
-
----
-
-# Step 10: Restart the Game (10 Marks)
-
-## Task
-
-When the Game Over screen appears:
-
-- Press **R** → Start a new game
-- Press **Q** → Exit the game
-
-When restarting:
+Pressing **R** should:
 
 - Reset score
 - Reset lives
-- Clear all coins
-- Clear all bombs
-- Move the player back to the starting position
+- Remove all coins
+- Remove all bombs
+- Move player back to starting position
+- Start the game again
 
 ---
 
-# Bonus Challenge (+20 Marks)
+# 📋 Functional Requirements Checklist
 
-Complete **any FOUR** of the following:
+Your game must include all of the following:
 
-⭐ Add different types of coins.
-
-⭐ Golden Coin (+50 Points)
-
-⭐ Silver Coin (+20 Points)
-
-⭐ Bronze Coin (+10 Points)
-
----
-
-⭐ Add sound effects.
-
----
-
-⭐ Add background music.
+- Game window
+- Player movement
+- Falling coins
+- Falling bombs
+- Collision detection
+- Random scoring (10–20)
+- Score display
+- Lives display
+- High score saved in a file
+- Game over screen
+- Restart option
+- Quit option
 
 ---
 
-⭐ Increase game speed every 100 points.
+# 💡 Hints
+
+### Creating the Player
+
+```python
+player = pygame.Rect(x, y, width, height)
+```
 
 ---
 
-⭐ Display the current level.
+### Random Object Position
+
+```python
+random.randint(start, end)
+```
 
 ---
 
-⭐ Add Pause/Resume using **P**.
+### Collision Detection
+
+```python
+rect1.colliderect(rect2)
+```
 
 ---
 
-⭐ Add a Start Menu.
+### Saving High Score
+
+```python
+with open("coinscore.txt", "w") as file:
+    file.write(str(high_score))
+```
 
 ---
 
-⭐ Add power-ups:
+### Reading High Score
 
-- Shield
-- Double Score
-- Slow Motion
-
----
-
-⭐ Add different bomb sizes.
+```python
+with open("coinscore.txt", "r") as file:
+    high_score = int(file.read())
+```
 
 ---
 
-⭐ Add animations when collecting a coin.
+### Drawing Shapes
+
+Rectangle
+
+```python
+pygame.draw.rect(...)
+```
+
+Ellipse
+
+```python
+pygame.draw.ellipse(...)
+```
+
+Circle
+
+```python
+pygame.draw.circle(...)
+```
 
 ---
 
-⭐ Display FPS.
+# 📂 Project Structure
+
+```
+CatchTheCoins/
+│
+├── main.py
+└── coinscore.txt
+```
 
 ---
 
-⭐ Add a Countdown before the game starts.
+# ⭐ Bonus Features (Extra Credit)
+
+Implement **any two** of the following:
+
+- Sound effects
+- Background music
+- Pause feature (P key)
+- Increasing difficulty over time
+- Animated player
+- Different coin values
+- Power-up items
+- Countdown timer
+- Background image
+- Custom player sprite
 
 ---
 
-# Submission Requirements
+# 📤 Submission Requirements
 
-Submit:
+Submit a ZIP file containing:
 
-- ✅ Python (`.py`) source code
-- ✅ High Score text file
-- ✅ Screenshot of the game
-- ✅ Short README explaining:
-  - Controls
-  - Features
-  - Bonus features completed
+- `main.py`
+- `coinscore.txt`
+- Any assets used (images, sounds, fonts)
+- A screenshot of the game running
 
 ---
 
-# Marking Breakdown
+# 📊 Marking Rubric
 
-| Step | Marks |
-|------|------:|
-| Step 1 – Game Window | 10 |
-| Step 2 – Player | 10 |
-| Step 3 – Player Movement | 10 |
-| Step 4 – Falling Coins | 10 |
-| Step 5 – Coin Collection & Score | 10 |
-| Step 6 – Falling Bombs | 10 |
-| Step 7 – Lives System | 10 |
-| Step 8 – Game Over Screen | 10 |
-| Step 9 – High Score | 10 |
-| Step 10 – Restart Game | 10 |
+| Criteria | Marks |
+|-----------|------:|
+| Game Window & FPS | 10 |
+| Player Movement | 10 |
+| Coin System | 15 |
+| Bomb System | 15 |
+| Score System | 10 |
+| Lives System | 10 |
+| High Score File Handling | 15 |
+| Game Over & Restart | 10 |
+| Code Quality & Readability | 5 |
 | **Total** | **100** |
 
 ---
 
-# ✅ Expected Outcome
+# 🚫 Important Rules
 
-After completing all the steps, your game should:
+- Use **Python** and **Pygame** only.
+- Write clean, well-organized code.
+- Use meaningful variable names.
+- Divide your program into functions whenever possible.
+- Your program should run without errors.
+- Comment important sections of your code.
 
-- 🪙 Generate random falling coins.
-- 💣 Generate random falling bombs.
-- 🎮 Allow the player to move left and right.
-- 🏆 Increase the score when coins are collected.
-- ❤️ Decrease lives when bombs are hit.
-- 💾 Save the High Score.
-- 🔄 Allow the player to restart the game.
-- ❌ Allow the player to quit the game.
+---
 
-🎉 Congratulations! By following each step, you will have built a complete **Catch the Coins** game using **Python and Pygame**.
+# 🎯 Expected Output
+
+Your final game should allow the player to:
+
+- Move left and right
+- Catch falling coins
+- Avoid bombs
+- Earn random points
+- Lose lives on bomb collisions
+- Save the highest score permanently
+- Restart the game after losing
+- Quit the game using the keyboard
